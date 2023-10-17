@@ -4,8 +4,8 @@ const voiceflowRuntime = "general-runtime.voiceflow.com";
 const voiceflowVersionID =
   document.getElementById("vfassistant").getAttribute("data-version") ||
   "production";
-const voiceflowAPIKey = "VF.DM.652afb9244a86a0007bc9df9.g3zZdF12zd8c9A0S";
-// const voiceflowAPIKey = "VF.DM.64fa295bb73b580008d71482.TLynxecU2SVgJG9n";
+const voiceflowAPIKey = "VF.DM.65231f69ffcc370007a1300b.VZhonEwUfY5zSJsY";
+
 
 const chatWindow = document.getElementById("chat-window");
 const input = document.getElementById("user-input");
