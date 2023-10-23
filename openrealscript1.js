@@ -45,7 +45,7 @@ function displayResponse(response) {
         } else if (item.type === "choice") {
           // Handle 'choice' type items to render buttons
           const buttonContainer = document.createElement("div");
-          buttonContainer.style.display = "flex";
+          buttonContainer.classList.add("buttoncontainer");
 
           item.payload.buttons.forEach((button) => {
             const buttonElement = document.createElement("button");
