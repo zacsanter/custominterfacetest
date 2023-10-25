@@ -26,12 +26,21 @@ function displayResponse(response) {
     if (item.type === "speak" || item.type === "text") {
         console.info("Speak/Text Step");
 
-        const messageElement = document.createElement("div");
-        
         const taglineElement = document.createElement("div");
-        taglineElement.classList.add("assistanttagline");
-        taglineElement.textContent = "OpenReal Bot";
-        chatWindow.appendChild(taglineElement);
+taglineElement.classList.add("assistanttagline");
+taglineElement.textContent = "OpenReal Bot";
+chatWindow.appendChild(taglineElement);
+
+const assistantWrapper = document.createElement("div");
+assistantWrapper.classList.add("assistantwrapper");
+
+const assistantImage = document.createElement("div");
+assistantImage.classList.add("assistantimage");
+assistantWrapper.appendChild(assistantImage);
+
+const messageElement = document.createElement("div");
+messageElement.classList.add("message", "assistant");
+assistantWrapper.appendChild(messageElement);
     
 messageElement.classList.add("message", "assistant");
         
@@ -40,7 +49,7 @@ messageElement.classList.add("message", "assistant");
         const wrappedMessage = paragraphs.map(para => `<p>${para}</p>`).join("");
         
         messageElement.innerHTML = wrappedMessage;
-        chatWindow.appendChild(messageElement);
+        chatWindow.appendChild(assistantWrapper);
 
           // Save messages to local storage
 
@@ -212,16 +221,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
           audio.pause();
         }
         // Add user message to the chat window
-        const messageElement = document.createElement("div");
-        
         const taglineElement = document.createElement("div");
-        taglineElement.classList.add("usertagline");
-        taglineElement.textContent = "You";
-        chatWindow.appendChild(taglineElement);
-    
+taglineElement.classList.add("usertagline");
+taglineElement.textContent = "You";
+chatWindow.appendChild(taglineElement);
+
+const userWrapper = document.createElement("div");
+userWrapper.classList.add("userwrapper");
+
+const userImage = document.createElement("div");
+userImage.classList.add("userimage");
+userWrapper.appendChild(userImage);
+
+const messageElement = document.createElement("div");
 messageElement.classList.add("message", "user");
-        messageElement.textContent = userInput;
-        chatWindow.appendChild(messageElement);
+userWrapper.appendChild(messageElement);
+
+chatWindow.appendChild(userWrapper);
 
         // Save messages to local storage
         localStorage.setItem("messages", chatWindow.innerHTML);
