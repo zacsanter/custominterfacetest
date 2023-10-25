@@ -337,11 +337,7 @@ function handleButtonClick(event) {
   userWrapper.appendChild(userMessageElement);
 
   chatWindow.appendChild(userWrapper);
-        }
-    
-userMessageElement.classList.add("message", "user");
-  userMessageElement.textContent = event.target.textContent;
-  chatWindow.appendChild(userMessageElement);
+
   let body = { request: { type: event.target.dataset.key } };
   event.target.parentElement.remove();
   fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/interact/`, {
@@ -362,7 +358,7 @@ userMessageElement.classList.add("message", "user");
       displayResponse(null);
     });
   // Send the button label as input to the API and handle the response
-}}
+}
 
 
 
