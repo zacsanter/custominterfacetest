@@ -316,13 +316,27 @@ function generateUniqueId() {
 function handleButtonClick(event) {
   // Log the button name as a user message
   const userMessageElement = document.createElement("div");
-  
-        const prevMessage = chatWindow.lastElementChild;
-        if (!prevMessage || !prevMessage.classList.contains("user")) {
-            const userTaglineElement = document.createElement("div");
-            userTaglineElement.classList.add("usertagline");
-            userTaglineElement.textContent = "You";
-            chatWindow.appendChild(userTaglineElement);
+
+  const prevMessage = chatWindow.lastElementChild;
+  if (!prevMessage || !prevMessage.classList.contains("user")) {
+    const userTaglineElement = document.createElement("div");
+    userTaglineElement.classList.add("usertagline");
+    userTaglineElement.textContent = "You";
+    chatWindow.appendChild(userTaglineElement);
+  }
+
+  const userWrapper = document.createElement("div");
+  userWrapper.classList.add("userwrapper");
+
+  const userImage = document.createElement("div");
+  userImage.classList.add("userimage");
+  userWrapper.appendChild(userImage);
+
+  userMessageElement.classList.add("message", "user");
+  userMessageElement.textContent = event.target.textContent;
+  userWrapper.appendChild(userMessageElement);
+
+  chatWindow.appendChild(userWrapper);
         }
     
 userMessageElement.classList.add("message", "user");
