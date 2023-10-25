@@ -233,9 +233,10 @@ const userImage = document.createElement("div");
 userImage.classList.add("userimage");
 userWrapper.appendChild(userImage);
 
-const messageElement = document.createElement("div");
-messageElement.classList.add("message", "user");
-userWrapper.appendChild(messageElement);
+const userMessageElement = document.createElement("div");
+            userMessageElement.classList.add("message", "user");
+            userMessageElement.textContent = userInput;
+            userWrapper.appendChild(userMessageElement);
 
 chatWindow.appendChild(userWrapper);
 
