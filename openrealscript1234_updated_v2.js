@@ -362,7 +362,7 @@ userMessageElement.classList.add("message", "user");
       displayResponse(null);
     });
   // Send the button label as input to the API and handle the response
-}
+}}
 
 
 
