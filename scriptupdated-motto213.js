@@ -133,7 +133,7 @@ function displayResponse(response) {
         // After processing the last item, check for the specific message
         if (index === array.length - 1) {
           checkAndDisplayLocationContainer();
-        }
+        }, 1000 * index);
       });
     }
 
