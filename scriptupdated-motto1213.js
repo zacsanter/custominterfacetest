@@ -26,21 +26,10 @@ function displayResponse(response) {
   setTimeout(() => {
     if (response) {
       response.forEach((item, index, array) => {
+
+        const delay = index * 1000; // 1 second delay for each item
         if (item.type === "speak" || item.type === "text") {
           console.info("Speak/Text Step");
-
-          // const taglineElement = document.createElement("div");
-          // taglineElement.classList.add("assistanttagline");
-          // taglineElement.textContent = "InHealth Jobs";
-
-          // chatWindow.appendChild(assistantTagLine);
-
-          // const assistantWrapper = document.createElement("div");
-          // assistantWrapper.classList.add("assistantwrapper");
-
-          // const assistantImage = document.createElement("div");
-          // assistantImage.classList.add("assistantimage");
-          // assistantWrapper.appendChild(assistantImage);
 
           const messageElement = document.createElement("div");
           messageElement.classList.add("message", "assistant");
