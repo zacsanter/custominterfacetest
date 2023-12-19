@@ -2,6 +2,13 @@
 
 // <script data-version="production" src="https://cdn.jsdelivr.net/gh/zacsanter/inhealthjobs@main/inj--script-demo5.js" id="vfassistant"></script>
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const restartButton = document.getElementById('restart-button');
+    if (restartButton) {
+        restartButton.click(); // This will trigger the restart function associated with the button
+    }
+});
+
 const typingIndicator = document.getElementById("typing-indicator");
 const uniqueId = generateUniqueId();
 const voiceflowRuntime = "general-runtime.voiceflow.com";
@@ -23,12 +30,7 @@ const restartButton = document.getElementById("restart-button");
 const assistantTag = "InHealth Jobs",
   userTag = "You";
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const restartButton = document.getElementById('restart-button');
-    if (restartButton) {
-        restartButton.click(); // This will trigger the restart function associated with the button
-    }
-});
+
 
 
 async function fetchVoiceflowVariables(uniqueId) {
