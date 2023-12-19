@@ -3,6 +3,7 @@
 // <script data-version="production" src="https://cdn.jsdelivr.net/gh/zacsanter/inhealthjobs@main/inj--script-demo5.js" id="vfassistant"></script>
 
 
+  
 
 const typingIndicator = document.getElementById("typing-indicator");
 const uniqueId = generateUniqueId();
@@ -25,6 +26,12 @@ const restartButton = document.getElementById("restart-button");
 const assistantTag = "InHealth Jobs",
   userTag = "You";
 
+  if (restartButton) {
+        restartButton.click();
+    } else {
+        console.log('Restart button not found');
+    }
+})();
 
 
 
@@ -59,14 +66,6 @@ async function storeSpecificVoiceflowVariablesInLocalStorage(uniqueId) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const restartButton = document.getElementById('restart-button');
-    if (restartButton) {
-        restartButton.click(); // This will trigger the restart function associated with the button
-    }
-
-    // Other code that needs to run on DOMContentLoaded
-});
 
 function displayResponse(response) {
   setTimeout(() => {
