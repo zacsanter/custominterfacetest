@@ -1,3 +1,21 @@
+function clearChatWindow() {
+    // Assuming chatWindow is the element containing your chat messages
+    chatWindow.innerHTML = '';
+}
+
+function startNewSession() {
+    // Code to start a new session
+    // This might involve setting up a new uniqueId, clearing local storage, or making an API call to start a new session
+    uniqueId = generateUniqueId();
+    localStorage.removeItem("messages"); // Optional: clear local storage if needed
+    interact("#launch#"); // Example: send a command to Voiceflow to start a new interaction
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    clearChatWindow();
+    startNewSession();
+});
+
 // <script data-version="production" src="https://cdn.jsdelivr.net/gh/zacsanter/inhealthjobs@main/inj--script-demo5.js" id="vfassistant"></script>
 
 const typingIndicator = document.getElementById("typing-indicator");
@@ -20,6 +38,8 @@ const restartButton = document.getElementById("restart-button");
 
 const assistantTag = "InHealth Jobs",
   userTag = "You";
+
+
 
 async function fetchVoiceflowVariables(uniqueId) {
     try {
