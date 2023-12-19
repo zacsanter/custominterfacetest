@@ -616,7 +616,7 @@ function autoFillSignupForm() {
     const firstName = localStorage.getItem('first_name');
     const lastName = localStorage.getItem('last_name');
     const specialty = localStorage.getItem('Specialty');
-    const email = localStorage.getItem('Email');
+    const email = localStorage.getItem('email');
 
     // Get form input elements by their names
     const firstNameInput = document.getElementsByName('first-name')[0];
