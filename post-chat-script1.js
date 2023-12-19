@@ -9,10 +9,15 @@ const voiceflowVersionID =
 // const voiceflowAPIKey = "VF.DM.655b860c16e2a800073c64b8.Crth02ycb9UOeZ2H"; //Dabeer
 const voiceflowAPIKey = "VF.DM.654adda68fcc81000848a925.oW1MZ5jmxrc0vIqS"; //INJ
 
-// Retrieve values from local storage
-const firstName = localStorage.getItem('first_name') || 'DefaultFirstName';
-const lastName = localStorage.getItem('last_name') || 'DefaultLastName';
-const specialty = localStorage.getItem('Specialty') || 'DefaultSpecialty';
+// Function to remove quotation marks from a string
+function removeQuotes(string) {
+  return string.replace(/^"|"$/g, '');
+}
+
+// Retrieve values from local storage and remove quotation marks
+const firstName = removeQuotes(localStorage.getItem('first_name') || '"DefaultFirstName"');
+const lastName = removeQuotes(localStorage.getItem('last_name') || '"DefaultLastName"');
+const specialty = removeQuotes(localStorage.getItem('Specialty') || '"DefaultSpecialty"');
 
 // Prepare the options for the fetch request
 const options = {
@@ -22,11 +27,7 @@ const options = {
     'content-type': 'application/json',
     Authorization: voiceflowAPIKey
   },
-  body: JSON.stringify({
-    first_name: firstName,
-    last_name: lastName,
-    specialty: specialty
-  })
+  body: JSON.stringify({ first_name: firstName, last_name: lastName, specialty: specialty })
 };
 
 // Make the fetch request to Voiceflow
