@@ -23,24 +23,12 @@ const restartButton = document.getElementById("restart-button");
 const assistantTag = "InHealth Jobs",
   userTag = "You";
 
-function clearChatWindow() {
-    // Assuming chatWindow is the element containing your chat messages
-    chatWindow.innerHTML = '';
-}
-
-function startNewSession() {
-    // Code to start a new session
-    // This might involve setting up a new uniqueId, clearing local storage, or making an API call to start a new session
-    uniqueId = generateUniqueId();
-    localStorage.removeItem("messages"); // Optional: clear local storage if needed
-    interact("#launch#"); // Example: send a command to Voiceflow to start a new interaction
-}
-
 document.addEventListener('DOMContentLoaded', (event) => {
-    clearChatWindow();
-    startNewSession();
+    const restartButton = document.getElementById('restart-button');
+    if (restartButton) {
+        restartButton.click(); // This will trigger the restart function associated with the button
+    }
 });
-
 
 
 async function fetchVoiceflowVariables(uniqueId) {
