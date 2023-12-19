@@ -26,11 +26,16 @@ const restartButton = document.getElementById("restart-button");
 const assistantTag = "InHealth Jobs",
   userTag = "You";
 
-  if (restartButton) {
-        restartButton.click();
-    } else {
-        console.log('Restart button not found');
-    }
+(function() {
+    // Wait for a brief moment to ensure all elements are loaded
+    setTimeout(function() {
+        const restartButton = document.getElementById('restart-button');
+        if (restartButton) {
+            restartButton.click();
+        } else {
+            console.log('Restart button not found');
+        }
+    }, 500); // The delay in milliseconds (500ms in this case)
 })();
 
 
