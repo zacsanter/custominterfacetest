@@ -62,7 +62,7 @@ async function fetchVoiceflowVariables(uniqueId) {
 
 async function storeSpecificVoiceflowVariablesInLocalStorage(uniqueId) {
     const variables = await fetchVoiceflowVariables(uniqueId);
-    const keysToStore = ['Specialty', 'first_name', 'last_name', 'Email']; // Adjusted variable names
+    const keysToStore = ['Specialty', 'first_name', 'last_name', 'email']; // Adjusted variable names
 
     keysToStore.forEach(key => {
         if (variables.hasOwnProperty(key)) {
