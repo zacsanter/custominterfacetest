@@ -121,6 +121,17 @@ function displayResponse(response) {
             const buttonElement = document.createElement("button");
             buttonElement.classList.add("assistant", "message", "button");
             buttonElement.textContent = button.name;
+if (button.name === "Learn More") {
+                    buttonElement.addEventListener("click", () => {
+                        const lightboxModal = document.getElementById("lightbox-modal");
+                        if (lightboxModal) {
+                            lightboxModal.style.display = "flex";
+                            lightboxModal.style.opacity = "100";
+                        }
+                    });
+                }
+
+            
             buttonElement.dataset.key = button.request.type;
             buttonElement.addEventListener("click", (event) => {
               handleButtonClick(event);
