@@ -34,8 +34,7 @@ async function fetchVoiceflowVariables(uniqueId) {
             throw new Error(`Error: ${response.status}`);
         }
         const data = await response.json();
-        // Depending on the structure of the response, you might need to adjust how you access the variables
-        return data.variables || {}; // Adjust this line based on the actual structure of your response
+        return data.variables || {}; // Accessing the 'variables' field directly
     } catch (error) {
         console.error('Error fetching Voiceflow variables:', error);
         return {};
@@ -44,7 +43,7 @@ async function fetchVoiceflowVariables(uniqueId) {
 
 async function storeSpecificVoiceflowVariablesInLocalStorage(uniqueId) {
     const variables = await fetchVoiceflowVariables(uniqueId);
-    const keysToStore = ['Specialty', 'first_name', 'last_name', 'email']; // Variables to store
+    const keysToStore = ['Specialty', 'first_name', 'last_name', 'Email']; // Adjusted variable names
 
     keysToStore.forEach(key => {
         if (variables.hasOwnProperty(key)) {
