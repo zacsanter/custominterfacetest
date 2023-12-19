@@ -22,27 +22,26 @@ const assistantTag = "InHealth Jobs",
   userTag = "You";
 
 async function fetchVoiceflowVariables(uniqueId) {
-  
     try {
         const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}`, {
             method: 'GET',
             headers: {
               accept: 'application/json',
-    Authorization: voiceflowAPIKey
+              Authorization: voiceflowAPIKey
             }
         });
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
         const data = await response.json();
-        return data;
+        // Depending on the structure of the response, you might need to adjust how you access the variables
+        return data.variables || {}; // Adjust this line based on the actual structure of your response
     } catch (error) {
         console.error('Error fetching Voiceflow variables:', error);
         return {};
     }
 }
 
-// Function to store specific Voiceflow variables in local storage
 async function storeSpecificVoiceflowVariablesInLocalStorage(uniqueId) {
     const variables = await fetchVoiceflowVariables(uniqueId);
     const keysToStore = ['Specialty', 'first_name', 'last_name', 'email']; // Variables to store
