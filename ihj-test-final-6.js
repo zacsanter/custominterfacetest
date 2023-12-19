@@ -616,7 +616,7 @@ function autoFillSignupForm() {
     const firstName = localStorage.getItem('first_name');
     const lastName = localStorage.getItem('last_name');
     const specialty = localStorage.getItem('Specialty');
-    const email = localStorage.getItem('Email');
+    const email = localStorage.getItem('email');
 
     // Helper function to dispatch an event
     function dispatchEvent(element, eventType) {
