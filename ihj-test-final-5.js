@@ -649,7 +649,7 @@ function autoFillSignupForm() {
         emailInput.value = JSON.parse(email);
         dispatchEvent(emailInput, 'input');
     }
-}
+
 }
 // Mutation observer callback to check for the element
 function checkForElement(mutations, observer) {
