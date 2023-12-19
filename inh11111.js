@@ -26,6 +26,7 @@ async function fetchVoiceflowVariables(uniqueId) {
         const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/variables/?verbose=true`, {
             method: 'GET',
             headers: {
+               "Content-Type": "application/json",
                 'Authorization': voiceflowAPIKey,
                 'versionID': voiceflowVersionID
             }
