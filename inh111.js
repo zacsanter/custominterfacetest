@@ -21,10 +21,48 @@ const restartButton = document.getElementById("restart-button");
 const assistantTag = "InHealth Jobs",
   userTag = "You";
 
+async function fetchVoiceflowVariables(uniqueId) {
+    try {
+        const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/variables`, {
+            method: 'GET',
+            headers: {
+                'Authorization': voiceflowAPIKey,
+                'versionID': voiceflowVersionID
+            }
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching Voiceflow variables:', error);
+        return {};
+    }
+}
+
+// Function to store specific Voiceflow variables in local storage
+async function storeSpecificVoiceflowVariablesInLocalStorage(uniqueId) {
+    const variables = await fetchVoiceflowVariables(uniqueId);
+    const keysToStore = ['Specialty', 'first_name', 'last_name', 'email']; // Variables to store
+
+    keysToStore.forEach(key => {
+        if (variables.hasOwnProperty(key)) {
+            localStorage.setItem(key, JSON.stringify(variables[key]));
+        }
+    });
+}
+
 function displayResponse(response) {
   setTimeout(() => {
     if (response) {
       response.forEach((item, index, array) => {
+
+        let hasLearnMoreButton = item.type === "choice" && 
+                                 item.payload.buttons.some(button => button.name === "Learn More");
+
+        if (hasLearnMoreButton) {
+            // Fetch and store specific variables when 'Learn More' is present
+            storeSpecificVoiceflowVariablesInLocalStorage(uniqueId);
+        }
+        
         if (item.type === "speak" || item.type === "text") {
           // const taglineElement = document.createElement("div");
           // taglineElement.classList.add("assistanttagline");
