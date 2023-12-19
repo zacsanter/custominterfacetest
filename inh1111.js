@@ -23,7 +23,7 @@ const assistantTag = "InHealth Jobs",
 
 async function fetchVoiceflowVariables(uniqueId) {
     try {
-        const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/variables`, {
+        const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/variables/?verbose=true`, {
             method: 'GET',
             headers: {
                 'Authorization': voiceflowAPIKey,
