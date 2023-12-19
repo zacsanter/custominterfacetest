@@ -616,7 +616,15 @@ function autoFillSignupForm() {
     const firstName = localStorage.getItem('first_name');
     const lastName = localStorage.getItem('last_name');
     const specialty = localStorage.getItem('Specialty');
-    const email = localStorage.getItem('email');
+    const email = localStorage.getItem('Email');
+
+    // Helper function to dispatch an event
+    function dispatchEvent(element, eventType) {
+        if (element) {
+            let event = new Event(eventType, { bubbles: true });
+            element.dispatchEvent(event);
+        }
+    }
 
     // Get form input elements by their names
     const firstNameInput = document.getElementsByName('first-name')[0];
@@ -624,11 +632,24 @@ function autoFillSignupForm() {
     const specialtyInput = document.getElementsByName('speciality')[0];
     const emailInput = document.getElementsByName('eml')[0];
 
-    // Set the values to the inputs, if variables are available
-    if (firstName) firstNameInput.value = JSON.parse(firstName);
-    if (lastName) lastNameInput.value = JSON.parse(lastName);
-    if (specialty) specialtyInput.value = JSON.parse(specialty);
-    if (email) emailInput.value = JSON.parse(email);
+    // Set the values to the inputs and dispatch events
+    if (firstName) {
+        firstNameInput.value = JSON.parse(firstName);
+        dispatchEvent(firstNameInput, 'input'); // Dispatch an input event
+    }
+    if (lastName) {
+        lastNameInput.value = JSON.parse(lastName);
+        dispatchEvent(lastNameInput, 'input');
+    }
+    if (specialty) {
+        specialtyInput.value = JSON.parse(specialty);
+        dispatchEvent(specialtyInput, 'input');
+    }
+    if (email) {
+        emailInput.value = JSON.parse(email);
+        dispatchEvent(emailInput, 'input');
+    }
+}
 }
 // Mutation observer callback to check for the element
 function checkForElement(mutations, observer) {
