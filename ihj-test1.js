@@ -580,6 +580,49 @@ function updateTextContent(customFields) {
     }
   }
 }
+function autoFillSignupForm() {
+    // Retrieve variables from local storage
+    const firstName = localStorage.getItem('first_name');
+    const lastName = localStorage.getItem('last_name');
+    const specialty = localStorage.getItem('Specialty');
+    const email = localStorage.getItem('Email');
+
+    // Get form input elements by their names
+    const firstNameInput = document.getElementsByName('first-name')[0];
+    const lastNameInput = document.getElementsByName('last-name')[0];
+    const specialtyInput = document.getElementsByName('speciality')[0];
+    const emailInput = document.getElementsByName('eml')[0];
+
+    // Set the values to the inputs, if variables are available
+    if (firstName) firstNameInput.value = JSON.parse(firstName);
+    if (lastName) lastNameInput.value = JSON.parse(lastName);
+    if (specialty) specialtyInput.value = JSON.parse(specialty);
+    if (email) emailInput.value = JSON.parse(email);
+}
+// Mutation observer callback to check for the element
+function checkForElement(mutations, observer) {
+    for (let mutation of mutations) {
+        if (mutation.addedNodes.length) {
+            const element = document.querySelector('.svelte-15qvroz');
+            if (element) {
+                autoFillSignupForm();
+                observer.disconnect(); // Stop observing after the element is found
+                break;
+            }
+        }
+    }
+}
+
+// Create a new MutationObserver instance
+const observer = new MutationObserver(checkForElement);
+
+// Options for the observer (which parts of the DOM to monitor)
+const config = { childList: true, subtree: true };
+
+// Start observing the body for DOM changes
+observer.observe(document.body, config);
+
+
 
 function updateLocationCards(stateData) {
   // Convert stateData object to an array of state codes
