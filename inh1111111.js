@@ -21,30 +21,22 @@ const restartButton = document.getElementById("restart-button");
 const assistantTag = "InHealth Jobs",
   userTag = "You";
 
-async function interactWithVoiceflow(action) {
-    let body = {
-        // Your request body content
-    };
-
+async function fetchVoiceflowVariables(uniqueId) {
     try {
-        const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/interact/?verbose=true`, {
-            method: "POST",
+        const response = await fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/variables`, {
+            method: 'GET',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": voiceflowAPIKey,
-                "versionID": voiceflowVersionID
-            },
-            body: JSON.stringify(body)
+                'Authorization': voiceflowAPIKey,
+                'versionID': voiceflowVersionID
+            }
         });
-
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
-
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error interacting with Voiceflow:', error);
+        console.error('Error fetching Voiceflow variables:', error);
         return {};
     }
 }
