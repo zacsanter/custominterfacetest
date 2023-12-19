@@ -9,6 +9,32 @@ const voiceflowVersionID =
 // const voiceflowAPIKey = "VF.DM.655b860c16e2a800073c64b8.Crth02ycb9UOeZ2H"; //Dabeer
 const voiceflowAPIKey = "VF.DM.654adda68fcc81000848a925.oW1MZ5jmxrc0vIqS"; //INJ
 
+// Retrieve values from local storage
+const firstName = localStorage.getItem('first_name') || 'DefaultFirstName';
+const lastName = localStorage.getItem('last_name') || 'DefaultLastName';
+const specialty = localStorage.getItem('Specialty') || 'DefaultSpecialty';
+
+// Prepare the options for the fetch request
+const options = {
+  method: 'PATCH',
+  headers: {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    Authorization: voiceflowAPIKey
+  },
+  body: JSON.stringify({
+    first_name: firstName,
+    last_name: lastName,
+    specialty: specialty
+  })
+};
+
+// Make the fetch request to Voiceflow
+fetch(`https://${voiceflowRuntime}/state/user/${uniqueId}/variables`, options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
 const chatWindow = document.getElementById("chat-window");
 const input = document.getElementById("user-input");
 const responseContainer = document.getElementById("response-container");
@@ -26,6 +52,19 @@ var map_gl_1 = new mapboxgl.Map({ container: "map_1" }), map_gl_2 = new mapboxgl
 var bounds_gl_1 = new mapboxgl.LngLatBounds(), bounds_gl_2 = new mapboxgl.LngLatBounds(), bounds_gl_3 = new mapboxgl.LngLatBounds();
 const assistantTag = "InHealth Jobs",
   userTag = "You";
+
+(function() {
+    // Wait for a brief moment to ensure all elements are loaded
+    setTimeout(function() {
+        const restartButton = document.getElementById('restart-button');
+        if (restartButton) {
+            restartButton.click();
+        } else {
+            console.log('Restart button not found');
+        }
+    }, 50); // The delay in milliseconds (500ms in this case)
+})();
+
 
 function displayResponse(response) {
   setTimeout(() => {
