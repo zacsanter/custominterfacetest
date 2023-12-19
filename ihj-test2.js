@@ -606,8 +606,7 @@ function checkForElement(mutations, observer) {
             const element = document.querySelector('.svelte-15qvroz');
             if (element) {
                 autoFillSignupForm();
-                observer.disconnect(); // Stop observing after the element is found
-                break;
+                // Do not disconnect the observer, so it continues to monitor for the element
             }
         }
     }
