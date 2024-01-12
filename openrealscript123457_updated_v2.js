@@ -28,7 +28,7 @@ function displayResponse(response) {
 
         const taglineElement = document.createElement("div");
 taglineElement.classList.add("assistanttagline");
-taglineElement.textContent = "OpenReal Bot";
+taglineElement.textContent = "AS-Tx Bot";
 chatWindow.appendChild(taglineElement);
 
 const assistantWrapper = document.createElement("div");
